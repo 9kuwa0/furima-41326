@@ -42,7 +42,7 @@
 
 | Column         | Type          | Options                         |
 |----------------|---------------|---------------------------------|
-| item_name      | references    | null: false, foreign_key: true  |
+| item           | references    | null: false, foreign_key: true  |
 | user           | references    | null: false, foreign_key: true  |
 
 ### association
@@ -60,7 +60,7 @@
 | municipalily   | string       | null: false                       |
 | block          | string       | null: false                       |
 | building       | string       |                                   |
-| phone_num      | integer      | null: false                       |
+| phone_num      | string       | null: false                       |
 | record         | references   | null: false, foreign_key: true    |
 
 ### association
