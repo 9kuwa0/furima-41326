@@ -5,15 +5,13 @@
 | Column             | Type      | Options                     |
 |--------------------|-----------|-----------------------------|
 | nickname           | string    | null: false                 |
-| email              | string    | null: false, unique : true  |
+| email              | string    | null: false, unique:  true  |
 | encrypted_password | string    | null: false                 |
 | last_name_kanji    | string    | null: false                 |
 | first_name_kanji   | string    | null: false                 |
 | last_name_kana     | string    | null: false                 |
 | first_name_kana    | string    | null: false                 |
-| birth_year         | text      | null: false                 |
-| birth_month        | text      | null: false                 |
-| birth_day          | text      | null: false                 |
+| birthday           | date      | null: false                 |
 
 ### association
 
@@ -22,19 +20,17 @@
 
 ## itemsテーブル
 
-| Column           | Type      | Options                             |
-|------------------|-----------|-------------------------------------|
-| item_name        | string    | not null                            |
-| item_description | text      | not null                            |
-| item_category    | string    | not null                            |
-| item_condition   | string    | not null                            |
-| shopping_fee     | string    | not null                            |
-| item_source      | string    | not null                            |
-| item_num_day     | string    | not null                            |
-| item_price       | integer   | not null, 300~9,999,999             |
-| commission       | integer   | not null, item_price * 0.1 floor    |
-| item_profit      | integer   | not null, item_profit - item_fee    |
-| user_id          | reference | not null, foreign_key: true         |
+| Column            | Type       | Options                             |
+|-------------------|------------|-------------------------------------|
+| item_name         | string     | not null                            |
+| item_description  | text       | not null                            |
+| item_category_id  | integer    | not null                            |
+| item_condition_id | integer    | not null                            |
+| shipping_fee_id   | integer    | not null                            |
+| prefecture_id     | integer    | not null                            |
+| shipping_day_id   | integer    | not null                            |
+| item_price        | integer    | not null                            |
+| user              | references | not null, foreign_key: true         |
 
 ### association
 
@@ -44,18 +40,17 @@
 
 ## recordsテーブル
 
-| Column         | Type         | Options                        |
-|----------------|--------------|--------------------------------|
-| item_name_id   | reference    | not null, foreign_key: true    |
-| item_price_id  | reference    | not null, foreign_key: true    |
-| user_id        | reference    | not null, foreign_key: true    |
-| address_id     | reference    | not null, foreign_key: true    |
-| sold_day       | date         | not null                       |
+| Column         | Type          | Options                        |
+|----------------|---------------|--------------------------------|
+| item_name      | references    | not null, foreign_key: true    |
+| item_price     | references    | not null, foreign_key: true    |
+| user           | references    | not null, foreign_key: true    |
+| address        | references    | not null, foreign_key: true    |
 
 ### association
 
 -belongs_to :user
--belongs_to :record
+-belongs_to :item
 -has_one :address
 
 ## addressesテーブル
@@ -63,11 +58,12 @@
 | Column         | Type         | Options                        |
 |----------------|--------------|--------------------------------|
 | post_code      | string       | not null                       |
-| prefecture     | string       | not null                       |
+| prefecture_id  | integer      | not null                       |
 | municipalily   | string       | not null                       |
 | block          | string       | not null                       |
-| bilding        | string       |                                |
+| building       | string       |                                |
 | phone_num      | integer      | not null                       |
+| record         | references   | not null, foreign_key: true    |
 
 ### association
 
