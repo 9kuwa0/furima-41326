@@ -5,7 +5,7 @@
 | Column             | Type      | Options                     |
 |--------------------|-----------|-----------------------------|
 | nickname           | string    | null: false                 |
-| email              | string    | null: false, unique:  true  |
+| email              | string    | null: false, unique: true   |
 | encrypted_password | string    | null: false                 |
 | last_name_kanji    | string    | null: false                 |
 | first_name_kanji   | string    | null: false                 |
@@ -22,15 +22,15 @@
 
 | Column            | Type       | Options                             |
 |-------------------|------------|-------------------------------------|
-| item_name         | string     | not null                            |
-| item_description  | text       | not null                            |
-| item_category_id  | integer    | not null                            |
-| item_condition_id | integer    | not null                            |
-| shipping_fee_id   | integer    | not null                            |
-| prefecture_id     | integer    | not null                            |
-| shipping_day_id   | integer    | not null                            |
-| item_price        | integer    | not null                            |
-| user              | references | not null, foreign_key: true         |
+| item_name         | string     | null: false                         |
+| item_description  | text       | null: false                         |
+| item_category_id  | integer    | null: false                         |
+| item_condition_id | integer    | null: false                         |
+| shipping_fee_id   | integer    | null: false                         |
+| prefecture_id     | integer    | null: false                         |
+| shipping_day_id   | integer    | null: false                         |
+| item_price        | integer    | null: false                         |
+| user              | references | null: false, foreign_key: true      |
 
 ### association
 
@@ -40,12 +40,10 @@
 
 ## recordsテーブル
 
-| Column         | Type          | Options                        |
-|----------------|---------------|--------------------------------|
-| item_name      | references    | not null, foreign_key: true    |
-| item_price     | references    | not null, foreign_key: true    |
-| user           | references    | not null, foreign_key: true    |
-| address        | references    | not null, foreign_key: true    |
+| Column         | Type          | Options                         |
+|----------------|---------------|---------------------------------|
+| item_name      | references    | null: false, foreign_key: true  |
+| user           | references    | null: false, foreign_key: true  |
 
 ### association
 
@@ -55,15 +53,15 @@
 
 ## addressesテーブル
 
-| Column         | Type         | Options                        |
-|----------------|--------------|--------------------------------|
-| post_code      | string       | not null                       |
-| prefecture_id  | integer      | not null                       |
-| municipalily   | string       | not null                       |
-| block          | string       | not null                       |
-| building       | string       |                                |
-| phone_num      | integer      | not null                       |
-| record         | references   | not null, foreign_key: true    |
+| Column         | Type         | Options                           |
+|----------------|--------------|-----------------------------------|
+| post_code      | string       | null: false                       |
+| prefecture_id  | integer      | null: false                       |
+| municipalily   | string       | null: false                       |
+| block          | string       | null: false                       |
+| building       | string       |                                   |
+| phone_num      | integer      | null: false                       |
+| record         | references   | null: false, foreign_key: true    |
 
 ### association
 
