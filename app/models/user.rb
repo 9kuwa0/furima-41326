@@ -4,8 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :items
-  has_many :records
+  # 一時的にコメントアウト
+  # has_many :items
+  # has_many :records
 
   validates :nickname,         presence: true
   validates :last_name_kanji,  presence: true
