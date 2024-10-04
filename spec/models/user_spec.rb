@@ -72,29 +72,29 @@ RSpec.describe User, type: :model do
       end
 
       it 'passwordはひらがながあると登録できない' do
-        @user.password = '123456や'
-        @user.password_confirmation = '123456や'
+        @user.password = 'a123456や'
+        @user.password_confirmation = 'a123456や'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is invalid')
       end
 
       it 'passwordは全角カタカナがあると登録できない' do
-        @user.password = '123456ヤ'
-        @user.password_confirmation = '123456ヤ'
+        @user.password = 'a123456ヤ'
+        @user.password_confirmation = 'a123456ヤ'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is invalid')
       end
 
       it 'passwordは半角ｶﾀｶﾅがあると登録できない' do
-        @user.password = '123456ﾔ'
-        @user.password_confirmation = '123456ﾔ'
+        @user.password = 'a123456ﾔ'
+        @user.password_confirmation = 'a123456ﾔ'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is invalid')
       end
 
       it 'passwordは漢字があると登録できない' do
-        @user.password = '123456山'
-        @user.password_confirmation = '123456山'
+        @user.password = 'a123456山'
+        @user.password_confirmation = 'a123456山'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is invalid')
       end
