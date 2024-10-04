@@ -70,8 +70,13 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'rspec-rails', '~> 4.0.0'
 end
 
 group :production do
   gem 'pg'
 end
+
+gem 'devise'
+gem 'factory_bot_rails'
+gem 'faker'
