@@ -15,8 +15,9 @@ class Item < ApplicationRecord
   validates :shipping_day_id,   presence: true
   validates :item_price,        presence: true
   
-  validates :category_id, numericality: {other_than: 1}
+  validates :item_category_id, numericality: {other_than: 1}
   validates :item_condition_id, numericality: {other_than: 1}
-  validates :item_shipping_fee_id, numericality: {other_than: 1}
+  validates :shipping_fee_id, numericality: {other_than: 1}
   validates :prefecture_id, numericality: {other_than: 1}
+  validates :shipping_day_id, numericality: {other_than: 1}
 end
