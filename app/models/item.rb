@@ -3,6 +3,8 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one :record
   has_one_attached :image
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category
 
   validates :item_name,         presence: true
   validates :item_description,  presence: true
@@ -13,4 +15,5 @@ class Item < ApplicationRecord
   validates :shipping_day_id,   presence: true
   validates :item_price,        presence: true
   
+  validates :category_id, numericality: {other_than: 1}
 end
