@@ -16,4 +16,5 @@ class Item < ApplicationRecord
   validates :item_price,        presence: true
   
   validates :category_id, numericality: {other_than: 1}
+  validates :item_condition_id, numericality: {other_than: 1}
 end
