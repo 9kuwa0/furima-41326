@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # 一時的にコメントアウト
-  # has_many :items
+  has_many :items
   # has_many :records
 
   validates :nickname,         presence: true
