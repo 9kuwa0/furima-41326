@@ -35,6 +35,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Item category can't be blank")
       end
+      it '商品の状態が1の---だと出品ができない' do
+        @item.item_condition_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Item condition can't be blank")
+      end
       it '送料が1の---だと出品ができない' do
         @item.shipping_fee_id = 1
         @item.valid?
@@ -69,6 +74,11 @@ RSpec.describe Item, type: :model do
         @item.item_price = 1000.6
         @item.valid?
         expect(@item.errors.full_messages).to include("Item price must be an integer")
+      end
+      it 'ユーザーが紐付いていないと出品できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
       end
     end
   end
