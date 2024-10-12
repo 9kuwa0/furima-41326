@@ -92,7 +92,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('Password is invalid')
       end
 
-      it 'passwordは漢字があると登録できない' do-
+      it 'passwordは漢字があると登録できない' do
         @user.password = 'a123456山'
         @user.password_confirmation = 'a123456山'
         @user.valid?
