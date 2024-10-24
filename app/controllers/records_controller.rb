@@ -1,9 +1,14 @@
 class RecordsController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
   before_action :set_item, only: [:index, :new, :create]
 
   def index
-    @record_address = RecordAddress.new
-    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+    if current_user == @item.user
+      redirect_to root_path
+    else
+      @record_address = RecordAddress.new
+      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+    end
   end
 
   def new
