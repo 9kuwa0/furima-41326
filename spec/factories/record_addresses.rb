@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :donation_address do
+  factory :record_address do
     token          { "tok_abcdefghijk00000000000000000" }
     post_code      { "123-4567" }
     prefecture_id  { Faker::Number.between(from: 2, to: 48)}
@@ -7,5 +7,7 @@ FactoryBot.define do
     block          { "金華山天守閣18" }
     building       { "岐阜城" }
     phone_num      { "0120999999" }
+    item_price     { Faker::Number.between(from: 300, to: 9999999)}
+    user_id        { 1 }
   end
 end
