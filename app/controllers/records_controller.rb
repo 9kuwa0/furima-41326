@@ -1,14 +1,14 @@
 class RecordsController < ApplicationController
-  before_action :authenticate_user!, only: [:index]
+  before_action :authenticate_user!, only: [:index, :new]
   before_action :set_item, only: [:index, :new, :create]
+  before_action :check, only: [:index, :new]
 
   def index
-    if current_user == @item.user
-      redirect_to root_path
-    else
-      @record_address = RecordAddress.new
-      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
-    end
+    @record = Record.find_by(item_id: @item.id)
+    check
+    @record_address = RecordAddress.new
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+  
   end
 
   def new
@@ -36,6 +36,12 @@ class RecordsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def check
+    if  (current_user == @item.user) || (@record.present?)
+      redirect_to root_path
+    end
   end
 
   def pay_item
