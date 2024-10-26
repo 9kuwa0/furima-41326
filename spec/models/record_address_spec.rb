@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe RecordAddress, type: :model do
   before do
-    @record_address = FactoryBot.build(:record_address)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:test_item, user_id: @user.id)
+    @another_user = FactoryBot.create(:user)
+    @record_address = FactoryBot.build(:record_address, user_id: @another_user.id, item_id: @item.id)
   end
 
   describe '商品購入' do
@@ -50,6 +53,7 @@ RSpec.describe RecordAddress, type: :model do
       it '郵便番号に全角ひらがながあると購入できない' do
         @record_address.post_code = '123-あいうえ'
         @record_address.valid?
+
         expect(@record_address.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
       end
       it '郵便番号に全角カタカナがあると購入できない' do
@@ -135,6 +139,17 @@ RSpec.describe RecordAddress, type: :model do
         @record_address.phone_num = '0120999ｱｱｱ'
         @record_address.valid?
         expect(@record_address.errors.full_messages).to include("Phone num is invalid")
+      end
+      it 'userが紐付いていないと購入できない' do
+        @record_address.user_id = nil
+        @record_address.valid?
+        expect(@record_address.errors.full_messages).to include("User can't be blank")
+      end
+      it 'itemが紐付いていないと購入できない' do
+        @record_address.item_id = nil
+        @record_address.valid?
+        puts @record_address.errors.full_messages
+        expect(@record_address.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
