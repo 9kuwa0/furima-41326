@@ -9,6 +9,6 @@ FactoryBot.define do
     phone_num      { "0120999999" }
 
     association :user
-    # association :item
+    association :item
   end
 end

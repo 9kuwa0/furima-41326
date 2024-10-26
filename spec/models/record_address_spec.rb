@@ -148,7 +148,6 @@ RSpec.describe RecordAddress, type: :model do
       it 'itemが紐付いていないと購入できない' do
         @record_address.item_id = nil
         @record_address.valid?
-        puts @record_address.errors.full_messages
         expect(@record_address.errors.full_messages).to include("Item can't be blank")
       end
     end
