@@ -1,18 +1,13 @@
 class RecordsController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :new]
-  before_action :set_item, only: [:index, :new, :create]
-  before_action :check, only: [:index, :new]
+  before_action :authenticate_user!, only: :index
+  before_action :set_item, only: [:index, :create]
+  before_action :check, only: :index
 
   def index
     @record = Record.find_by(item_id: @item.id)
     check
     @record_address = RecordAddress.new
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
-  
-  end
-
-  def new
-    @record_address = RecordAddress.new
   end
 
   def create
@@ -31,7 +26,7 @@ class RecordsController < ApplicationController
   private
 
   def record_params
-    params.require(:record_address).permit(:post_code, :prefecture_id, :municipality, :building, :block, :phone_num).merge(token: params[:token], item_price: @item.item_price, user_id: current_user.id, item_id: @item.id)
+    params.require(:record_address).permit(:post_code, :prefecture_id, :municipality, :building, :block, :phone_num).merge(token: params[:token], user_id: current_user.id, item_id: @item.id)
   end
 
   def set_item

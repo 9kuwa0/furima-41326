@@ -7,7 +7,8 @@ FactoryBot.define do
     block          { "金華山天守閣18" }
     building       { "岐阜城" }
     phone_num      { "0120999999" }
-    item_price     { Faker::Number.between(from: 300, to: 9999999)}
-    user_id        { 1 }
+
+    association :user
+    # association :item
   end
 end
