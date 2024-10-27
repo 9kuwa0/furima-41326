@@ -52,7 +52,7 @@ class Prefecture < ActiveHash::Base
   ]
 
   include ActiveHash::Associations
-    # has_many :users　あとで使うと思う
     has_many :items
+    has_many :users
 
 end

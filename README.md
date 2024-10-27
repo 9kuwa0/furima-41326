@@ -57,7 +57,7 @@
 |----------------|--------------|-----------------------------------|
 | post_code      | string       | null: false                       |
 | prefecture_id  | integer      | null: false                       |
-| municipalily   | string       | null: false                       |
+| municipality   | string       | null: false                       |
 | block          | string       | null: false                       |
 | building       | string       |                                   |
 | phone_num      | string       | null: false                       |

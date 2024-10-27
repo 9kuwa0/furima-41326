@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
 
   belongs_to :user
-  # has_one :record 今はまだ必要でない
+  has_one :record
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
