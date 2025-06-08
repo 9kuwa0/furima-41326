@@ -21,6 +21,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @prev_item = Item.where("id < ?", @item.id).order(id: :desc).first
+    @next_item = Item.where("id > ?", @item.id).order(id: :asc).first
   end
 
   def edit
