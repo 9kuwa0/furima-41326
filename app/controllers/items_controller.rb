@@ -23,6 +23,8 @@ class ItemsController < ApplicationController
   def show
     @prev_item = Item.where("id < ?", @item.id).order(id: :desc).first
     @next_item = Item.where("id > ?", @item.id).order(id: :asc).first
+    @comments = @item.comments.includes(:user)
+    @comment = Comment.new
   end
 
   def edit
