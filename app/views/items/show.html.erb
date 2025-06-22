@@ -93,8 +93,7 @@
       <div class="comment-title">コメント一覧</div>
       <% @item.comments.each do |comment| %>
         <ul class="comment-lists">
-          <li><%= comment.user.nickname %>さん</li>
-          <li><%= comment.text %></li>
+          <li><%= comment.user.nickname %>さん : <%= comment.text %></li>
         </ul>
       <% end %>
     </div>
