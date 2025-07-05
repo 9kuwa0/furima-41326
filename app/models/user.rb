@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :items
   has_many :records
+  has_many :comments
 
   validates :nickname,         presence: true
   validates :last_name_kanji,  presence: true
